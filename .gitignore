@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 
+# ignore an entire directory
+/.vs/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
