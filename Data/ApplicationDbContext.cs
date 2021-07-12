@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>> 
+    public class ApplicationDbContext : IdentityDbContext<Customer, Role, int, IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>> 
         //DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

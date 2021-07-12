@@ -13,32 +13,32 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public class UserRepository : Repository<User>, IUserRepository, IScopedDependency
+    public class UserRepository : Repository<Customer>, IUserRepository, IScopedDependency
     {
         public UserRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
         }
 
-        public Task<User> GetByUserAndPass(string username, string password, CancellationToken cancellationToken)
+        public Task<Customer> GetByUserAndPass(string username, string password, CancellationToken cancellationToken)
         {
             var passwordHash = SecurityHelper.GetSha256Hash(password);
             return Table.Where(p => p.UserName == username && p.PasswordHash == passwordHash).SingleOrDefaultAsync(cancellationToken);
         }
 
-        public Task UpdateSecuirtyStampAsync(User user, CancellationToken cancellationToken)
+        public Task UpdateSecuirtyStampAsync(Customer user, CancellationToken cancellationToken)
         {
             //user.SecurityStamp = Guid.NewGuid();
             return UpdateAsync(user, cancellationToken);
         }
 
-        public Task UpdateLastLoginDateAsync(User user, CancellationToken cancellationToken)
+        public Task UpdateLastLoginDateAsync(Customer user, CancellationToken cancellationToken)
         {
             user.LastLoginDate = DateTimeOffset.Now;
             return UpdateAsync(user, cancellationToken);
         }
 
-        public async Task AddAsync(User user, string password, CancellationToken cancellationToken)
+        public async Task AddAsync(Customer user, string password, CancellationToken cancellationToken)
         {
             var exists = await TableNoTracking.AnyAsync(p => p.UserName == user.UserName);
             if (exists)

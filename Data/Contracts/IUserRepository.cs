@@ -6,12 +6,12 @@ using Entities;
 
 namespace Data.Repositories
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<Customer>
     {
-        Task<User> GetByUserAndPass(string username, string password, CancellationToken cancellationToken);
+        Task<Customer> GetByUserAndPass(string username, string password, CancellationToken cancellationToken);
 
-        Task AddAsync(User user, string password, CancellationToken cancellationToken);
-        Task UpdateSecuirtyStampAsync(User user, CancellationToken cancellationToken);
-        Task UpdateLastLoginDateAsync(User user, CancellationToken cancellationToken);
+        Task AddAsync(Customer user, string password, CancellationToken cancellationToken);
+        Task UpdateSecuirtyStampAsync(Customer user, CancellationToken cancellationToken);
+        Task UpdateLastLoginDateAsync(Customer user, CancellationToken cancellationToken);
     }
 }

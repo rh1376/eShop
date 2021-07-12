@@ -9,9 +9,9 @@ namespace Services.DataInitializer
     public class UserDataInitializer : IDataInitializer
     {
         private readonly IUserRepository userRepository;
-        private readonly UserManager<User> userManager;
+        private readonly UserManager<Customer> userManager;
 
-        public UserDataInitializer(IUserRepository userRepository, UserManager<User> userManager)
+        public UserDataInitializer(IUserRepository userRepository, UserManager<Customer> userManager)
         {
             this.userRepository = userRepository;
             this.userManager = userManager;
@@ -22,7 +22,7 @@ namespace Services.DataInitializer
         {
             if (!userRepository.TableNoTracking.Any(p => p.UserName == "Admin"))
             {
-                var user = new User
+                var user = new Customer
                 {
                     Name = "Admin",
                     LastName = "Admin",

@@ -13,10 +13,10 @@ namespace Services.DataInitializer
 {
     public class UserRoleDataInitializer : IDataInitializer
     {        
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<Customer> _userManager;
         private readonly IRepository<UserRole> _userRolerepository;
         private readonly IRepository<Role> _RoleRepository;
-        public UserRoleDataInitializer(UserManager<User> userManager, IRepository<Role> RoleRepository, IRepository<UserRole> userRolerepository)
+        public UserRoleDataInitializer(UserManager<Customer> userManager, IRepository<Role> RoleRepository, IRepository<UserRole> userRolerepository)
         {            
             _userManager = userManager;
             _userRolerepository = userRolerepository;
