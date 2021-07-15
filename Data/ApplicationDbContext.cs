@@ -21,10 +21,6 @@ namespace Data
 
         }
 
-        public ApplicationDbContext()
-        {
-        }
-
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer("Data Source=localhost;Integrated Security=True;Initial Catalog=eShop;")

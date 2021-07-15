@@ -7,29 +7,29 @@ namespace WebFramework.Api
 {
     public abstract class BaseDto<TDto, TEntity, TKey> : IHaveCustomMapping
         where TDto : class, new()
-        where TEntity : BaseEntity<TKey>, new()
+        where TEntity : class, IEntity<TKey>, new()
     {
         [Display(Name = "ردیف")]
         public TKey Id { get; set; }
 
-        public TEntity ToEntity()
+        public TEntity ToEntity(IMapper mapper)
         {
-            return Mapper.Map<TEntity>(CastToDerivedClass(this));
+            return mapper.Map<TEntity>(CastToDerivedClass(mapper, this));
         }
 
-        public TEntity ToEntity(TEntity entity)
+        public TEntity ToEntity(IMapper mapper, TEntity entity)
         {
-            return Mapper.Map(CastToDerivedClass(this), entity);
+            return mapper.Map(CastToDerivedClass(mapper, this), entity);
         }
 
-        public static TDto FromEntity(TEntity model)
+        public static TDto FromEntity(IMapper mapper, TEntity model)
         {
-            return Mapper.Map<TDto>(model);
+            return mapper.Map<TDto>(model);
         }
 
-        protected TDto CastToDerivedClass(BaseDto<TDto, TEntity, TKey> baseInstance)
+        protected TDto CastToDerivedClass(IMapper mapper, BaseDto<TDto, TEntity, TKey> baseInstance)
         {
-            return Mapper.Map<TDto>(baseInstance);
+            return mapper.Map<TDto>(baseInstance);
         }
 
         public void CreateMappings(Profile profile)
@@ -55,7 +55,7 @@ namespace WebFramework.Api
 
     public abstract class BaseDto<TDto, TEntity> : BaseDto<TDto, TEntity, int>
         where TDto : class, new()
-        where TEntity : BaseEntity<int>, new()
+        where TEntity : class, IEntity<int>, new()
     {
 
     }

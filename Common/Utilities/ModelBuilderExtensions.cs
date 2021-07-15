@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Pluralize;
 using Pluralize.NET;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Common.Utilities
@@ -18,13 +16,12 @@ namespace Common.Utilities
         /// <param name="modelBuilder"></param>
         public static void AddSingularizingTableNameConvention(this ModelBuilder modelBuilder)
         {
-            //Pluralizer pluralizer = new Pluralizer();
-            //foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
-            //{
-            //    entityType.GetAnnotation
-            //    string tableName = entityType.GetTableName();
-            //    entityType.SetTableName(pluralizer.Singularize(tableName));
-            //}
+            Pluralizer pluralizer = new Pluralizer();
+            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                string tableName = entityType.GetTableName();
+                entityType.SetTableName(pluralizer.Singularize(tableName));
+            }
         }
 
         /// <summary>
@@ -33,12 +30,12 @@ namespace Common.Utilities
         /// <param name="modelBuilder"></param>
         public static void AddPluralizingTableNameConvention(this ModelBuilder modelBuilder)
         {
-            //Pluralizer pluralizer = new Pluralizer();
-            //foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
-            //{
-            //    string tableName = entityType.GetTableName();
-            //    entityType.SetTableName(pluralizer.Pluralize(tableName));
-            //}
+            Pluralizer pluralizer = new Pluralizer();
+            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                string tableName = entityType.GetTableName();
+                entityType.SetTableName(pluralizer.Pluralize(tableName));
+            }
         }
 
         /// <summary>
@@ -60,12 +57,12 @@ namespace Common.Utilities
         /// <param name="defaultValueSql">DefaultValueSql like "NEWSEQUENTIALID()"</param>
         public static void AddDefaultValueSqlConvention(this ModelBuilder modelBuilder, string propertyName, Type propertyType, string defaultValueSql)
         {
-            //foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
-            //{
-            //    IMutableProperty property = entityType.GetProperties().SingleOrDefault(p => p.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase));
-            //    if (property != null && property.ClrType == propertyType)
-            //        property.SetDefaultValueSql(defaultValueSql);
-            //}
+            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                IMutableProperty property = entityType.GetProperties().SingleOrDefault(p => p.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase));
+                if (property != null && property.ClrType == propertyType)
+                    property.SetDefaultValueSql(defaultValueSql);
+            }
         }
 
         /// <summary>
