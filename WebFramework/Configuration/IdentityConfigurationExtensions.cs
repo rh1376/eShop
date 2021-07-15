@@ -13,7 +13,7 @@ namespace WebFramework.Configuration
     {
         public static void AddCustomIdentity(this IServiceCollection services, IdentitySettings settings)
         {            
-            services.AddIdentity<Customer, Role>(identityOptions =>
+            services.AddIdentity<Customer, IdentityRole<int>>(identityOptions =>
             {
                 //Password Settings
                 identityOptions.Password.RequireDigit = settings.PasswordRequireDigit;

@@ -26,7 +26,6 @@ namespace Services.DataInitializer
                 {
                     Name = "Admin",
                     LastName = "Admin",
-                    CodeMeli = "AdminAdmin",
                     PhoneNumber = "AdminAdmin1",
                     UserName = "Admin",
                     Email = "admin@site.com",

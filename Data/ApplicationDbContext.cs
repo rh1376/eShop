@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class ApplicationDbContext : IdentityDbContext<Customer, Role, int, IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>> 
-        //DbContext
+    public class ApplicationDbContext : IdentityDbContext<Customer, IdentityRole<int>,int>
+    //DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -25,12 +25,12 @@ namespace Data
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Data Source=localhost;Integrated Security=True;Initial Catalog=ExamSite;")                    
-                    .ConfigureWarnings(warning => warning.Throw());
-            base.OnConfiguring(optionsBuilder);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Data Source=localhost;Integrated Security=True;Initial Catalog=eShop;")
+        //            .ConfigureWarnings(warning => warning.Throw());
+        //    base.OnConfiguring(optionsBuilder);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

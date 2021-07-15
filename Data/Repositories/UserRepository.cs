@@ -1,7 +1,6 @@
 ﻿using Common;
 using Common.Exceptions;
 using Common.Utilities;
-using Data.Contracts;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -34,7 +33,7 @@ namespace Data.Repositories
 
         public Task UpdateLastLoginDateAsync(Customer user, CancellationToken cancellationToken)
         {
-            user.LastLoginDate = DateTimeOffset.Now;
+            //user.LastLoginDate = DateTimeOffset.Now;
             return UpdateAsync(user, cancellationToken);
         }
 
